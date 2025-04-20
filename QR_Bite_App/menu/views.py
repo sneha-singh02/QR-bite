@@ -12,10 +12,12 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
 import os
+from django.template.loaders.app_directories import get_app_template_dirs
 # Simple cart logic using session (for now)
 
 
-
+print("TEMPLATE DIRS:", get_app_template_dirs('templates'))
+print("LOOKING FOR: menu/menu.html")
 
 def send_otp(request, mobile_number):
     otp = random.randint(100000, 999999)  # Generate a 6-digit OTP
