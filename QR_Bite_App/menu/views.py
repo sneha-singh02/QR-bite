@@ -15,7 +15,7 @@ import os
 # Simple cart logic using session (for now)
 
 
-print("Template Path:", os.path.join(settings.BASE_DIR, 'menu/templates/menu/menu.html'))
+
 
 def send_otp(request, mobile_number):
     otp = random.randint(100000, 999999)  # Generate a 6-digit OTP
@@ -115,10 +115,10 @@ def dish_list(request):
         'user_name': request.session.get('user_name', 'Guest'),
         'logged_in': request.session.get('logged_in', False),
     }
-    template_path = os.path.join(settings.BASE_DIR, 'templates', 'menu', 'menu.html')
+    template_path = print("Template Path:", os.path.join(settings.BASE_DIR, 'menu/templates/menu/menu.html'))
     print(f"Template Path: {template_path}")
     
-    return render(request, 'menu/menu.html', context)
+    return render(request, template_path, context)
 
 
 def logout_view(request):
