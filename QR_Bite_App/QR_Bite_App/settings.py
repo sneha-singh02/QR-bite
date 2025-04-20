@@ -62,7 +62,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #'DIRS': [os.path.join(BASE_DIR, 'templates') ,os.path.join(BASE_DIR, 'menu', 'templates') ,os.path.join(BASE_DIR, 'menu/templates/menu/menu.html')],
-        'DIRS' : ['templates'],
+        'DIRS' : [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
