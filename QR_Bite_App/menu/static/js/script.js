@@ -1,7 +1,12 @@
-// Wait for the DOM to fully load
+
 window.addEventListener("DOMContentLoaded", () => {
     const cart = JSON.parse(localStorage.getItem("orderCart")) || [];
-
+    const categoryButtons = document.querySelectorAll(".category-button");
+    const filterButtons = document.querySelectorAll(".additional-filters button");
+    const dishItems = document.querySelectorAll(".dish-item");
+    // To track active filters
+    let activeCategory = null;
+    let activeDishType = null;
     // Function to update localStorage
     function updateCartStorage(cart) {
         localStorage.setItem("orderCart", JSON.stringify(cart));
@@ -115,4 +120,83 @@ window.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
+
+
+    function filterDishes() {
+        dishItems.forEach(dish => {
+            const dishCategory = dish.getAttribute("data-category").toLowerCase();
+            const dishType = dish.getAttribute("data-type").toLowerCase().replace("-", " ");
+            console.log(dishCategory ,dishType);
+
+            // Check if the dish matches the active category and type filters
+            const categoryMatches = activeCategory ? dishCategory === activeCategory : true;
+            const typeMatches = activeDishType ? dishType === activeDishType : true;
+
+            // Show or hide dish based on filters
+            if (categoryMatches && typeMatches) {
+                dish.style.display = "block"; // Show dish
+            } else {
+                dish.style.display = "none"; // Hide dish
+            }
+        });
+    }
+
+    // Handle category button click
+    categoryButtons.forEach(button => {
+        console.log('Checking the Button CLick');
+
+        button.addEventListener("click", function () {
+            const category = this.getAttribute("data-category").toLowerCase();
+            console.log(category);
+
+            // If the category is already active, reset filters to show all dishes
+            if (activeCategory === category) {
+                activeCategory = null;
+            } else {
+                activeCategory = category;
+            }
+
+            // Update category button styles
+            categoryButtons.forEach(btn => {
+                if (btn.getAttribute("data-category").toLowerCase() === activeCategory) {
+                    btn.classList.add("bg-indigo-700"); // Active state
+                } else {
+                    btn.classList.remove("bg-indigo-700"); // Inactive state
+                }
+            });
+
+            // Apply the filters
+            filterDishes();
+        });
+    });
+
+
+       // Handle type filter button click (Veg/Non-Veg)
+       filterButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const type = this.innerText.toLowerCase();
+            console.log('type', type);
+            console.log('active dish Type', activeDishType);
+
+            // If the type is already active, reset the type filter
+            if (activeDishType === type) {
+                activeDishType = null;
+            } else {
+                activeDishType = type;
+            }
+
+            // Apply the filters
+            filterDishes();
+
+            // Update filter button styles
+            filterButtons.forEach(btn => {
+                if (btn.innerText.toLowerCase() === activeDishType) {
+                    btn.style.backgroundColor = "#16A34A"; // Active state
+                } else {
+                    btn.style.backgroundColor = "#34D399"; // Inactive state
+                }
+            });
+        });
+    });
+
 });
