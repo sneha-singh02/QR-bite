@@ -11,7 +11,7 @@ from .models import Profile
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+import os
 # Simple cart logic using session (for now)
 
 
@@ -115,6 +115,9 @@ def dish_list(request):
         'user_name': request.session.get('user_name', 'Guest'),
         'logged_in': request.session.get('logged_in', False),
     }
+    template_path = os.path.join(settings.BASE_DIR, 'templates', 'menu', 'menu.html')
+    print(f"Template Path: {template_path}")
+    
     return render(request, 'menu/menu.html', context)
 
 
