@@ -11,26 +11,29 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n8a@88-ssm-d0i&ms&m%4q_pye(@c^yt7jn5t*l_2-4l%=-66q'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
+MEDIA_URL = '/dish_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+print( 'In setting Py',MEDIA_URL)
+print('Root', MEDIA_ROOT)
 
 # Application definition
 
@@ -134,7 +137,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'lenovo.08.10.2000@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'pxmm gntn ioxj uakw'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Replace with your Gmail address
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

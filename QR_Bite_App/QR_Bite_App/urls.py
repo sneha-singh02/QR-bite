@@ -52,6 +52,7 @@ urlpatterns = [
     path('', include('menu.urls'))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+print('In URl', urlpatterns)
 
 #OR Code Paths 
 # from django.urls import path
