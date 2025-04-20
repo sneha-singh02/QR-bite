@@ -115,8 +115,8 @@ def dish_list(request):
         'user_name': request.session.get('user_name', 'Guest'),
         'logged_in': request.session.get('logged_in', False),
     }
-    template_path = "Template Path:", os.path.join(settings.BASE_DIR, 'menu/templates/menu/menu.html')
-    print(f"Template Path: {template_path}")
+    template_path =  os.path.join(settings.BASE_DIR, 'menu/templates/menu/menu.html')
+    print(f"Template Pathss: {template_path}")
     
     return render(request, template_path, context)
 
