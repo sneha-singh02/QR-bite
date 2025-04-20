@@ -15,7 +15,7 @@ import os
 # Simple cart logic using session (for now)
 
 
-
+print("Template Path:", os.path.join(settings.BASE_DIR, 'menu/templates/menu/menu.html'))
 
 def send_otp(request, mobile_number):
     otp = random.randint(100000, 999999)  # Generate a 6-digit OTP
