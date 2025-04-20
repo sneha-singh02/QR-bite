@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", () => {
         dishItems.forEach(dish => {
             const dishCategory = dish.getAttribute("data-category").toLowerCase();
             const dishType = dish.getAttribute("data-type").toLowerCase().replace("-", " ");
-            console.log(dishCategory ,dishType);
+            
 
             // Check if the dish matches the active category and type filters
             const categoryMatches = activeCategory ? dishCategory === activeCategory : true;
@@ -143,11 +143,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Handle category button click
     categoryButtons.forEach(button => {
-        console.log('Checking the Button CLick');
+       
 
         button.addEventListener("click", function () {
             const category = this.getAttribute("data-category").toLowerCase();
-            console.log(category);
+            
 
             // If the category is already active, reset filters to show all dishes
             if (activeCategory === category) {
@@ -175,8 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
        filterButtons.forEach(button => {
         button.addEventListener("click", function () {
             const type = this.innerText.toLowerCase();
-            console.log('type', type);
-            console.log('active dish Type', activeDishType);
+    
 
             // If the type is already active, reset the type filter
             if (activeDishType === type) {

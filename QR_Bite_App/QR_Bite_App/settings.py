@@ -32,8 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 MEDIA_URL = '/dish_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print( 'In setting Py',MEDIA_URL)
-print('Root', MEDIA_ROOT)
+
 
 # Application definition
 

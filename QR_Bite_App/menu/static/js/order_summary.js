@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addMoreButton = document.querySelector('.add-more-button');
   const checkoutButton = document.querySelector('.checkout-button');
   const exploreMenuBtn = document.getElementById('explore-menu-left');
-  console.log('ORder_summary js');
+  
   let orderCart = JSON.parse(localStorage.getItem("orderCart")) || [];
   let orderTotal = 0;
 
@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (addMoreButton) {
     addMoreButton.addEventListener('click', function () {
-      console.log('add more button is clicked')
       const redirectUrl = this.getAttribute('data-url');
       if (redirectUrl) {
         window.location.href = redirectUrl;
