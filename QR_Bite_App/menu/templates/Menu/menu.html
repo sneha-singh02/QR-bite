@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        .cursive {
+          font-family: cursive;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-poppins">
+
+    <!-- Include Tailwind CSS and Google Fonts -->
+{% load static %}
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Header with Background Image -->
+<header class="bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1470&q=80');">
+    <div class="bg-black bg-opacity-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            
+            <!-- Left: Logo + Title -->
+            <div class="flex items-center gap-4">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/024/284/682/small/restaurant-logo-5-png.png"
+                    alt="Restaurant Logo"
+                    class="w-16 h-16 object-contain">
+                <h1 class="text-3xl font-bold text-white" style="font-family: 'Pacifico', cursive;">
+                    QR Bite
+                </h1>
+            </div>
+
+            <!-- Right: User Info -->
+            <div class="flex items-center gap-6">
+                {% if logged_in %}
+                    <span class="text-white font-medium">Welcome, {{ user_name }}!</span>
+                    <a href="{% url 'logout' %}" class="text-white font-medium hover:text-red-300 transition duration-300">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white font-medium hover:text-red-300 transition duration-300">Login</a>
+                    <a href="{% url 'signup' %}" class="text-white font-medium hover:text-red-300 transition duration-300">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <!-- <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center"> -->
+          <!-- Logo and Welcome -->
+          <!-- <div>
+            <h1 class="text-2xl font-bold text-gray-800">QR Bite</h1>
+            <span class="text-gray-500 text-sm">Welcome User!</span>
+          </div> -->
+      
+          <!-- Login/Signup Links -->
+          <!-- <div class="flex items-center gap-6">
+            <a href="/login/" class="text-gray-700 font-medium hover:text-blue-600 transition duration-300">Login</a>
+            <span class="text-gray-400 font-medium">|</span>
+            <a href="/signup/" class="text-gray-700 font-medium hover:text-green-600 transition duration-300">Sign Up</a>
+          </div>
+        </div>
+      </header> -->
+      <!-- #e5e7eb       -->
+    <!-- HEADER -->
+    <!-- <header class="bg-red-600 text-white py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-semibold">QR Bite</h1>
+                <span class="font-semibold">Welcome User!</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/login/" class="text-white font-semibold">Login</a> / 
+                <a href="/signup/" class="text-white font-semibold">Sign Up</a>
+            </div>
+        </div>
+    </header> -->
+
+    <main class="container mx-auto px-4 py-8">
+        
+        <!-- CATEGORY FILTERS -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Categories</h2>
+            <div class="category-filter flex flex-wrap gap-2">
+                {% for category in categories %}
+                    <button class="category-button bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" data-category="{{ category }}">
+                        {{ category }}
+                    </button>
+                {% endfor %}
+            </div>
+        </section>
+
+       
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Filters</h2>
+            <div class="additional-filters flex flex-wrap">
+                <button style="background-color: #34D399; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.375rem; margin-right: 1rem;"
+                onmouseover="this.style.backgroundColor='#16A34A'"
+                onmouseout="this.style.backgroundColor='#34D399'">Veg</button>
+                <button style="background-color: #F87171; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.375rem;"
+                onmouseover="this.style.backgroundColor='#DC2626'"
+                onmouseout="this.style.backgroundColor='#F87171'">Non Veg</button>
+            </div>
+        </section>
+
+        <!-- DISHES -->
+        <section>
+            <h2 class="text-xl font-semibold mb-4 text-gray-800">Dishes</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
+                {% for dish in dishes %}
+                <div class="dish-item bg-white rounded-lg" data-category="{{ dish.category|lower }}" data-type="{{ dish.dish_type|lower }}">
+                    <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+                    <div class="dish-details">
+                        <h3 class="dish-name">{{ dish.name }}</h3>
+                        <p class="dish-price">Price: ${{ dish.price }}</p>
+                        <p class="dish-quantity">Quantity: {{ dish.quantity }}</p>
+                        <p class="dish-type">
+                            {% if dish.dish_type|lower == "veg" %}
+                                <span class="text-green-500">Veg</span>
+                            {% else %}
+                                <span class="text-red-500">Non-Veg</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                
+                    <!-- Add to Cart Button -->
+                    <button class="add-button ml-4">Order Now</button>
+                    <button class="add-button add-button ml-4">Add to Cart</button>
+                    <button class="remove-button" style="display: none;">Remove</button>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-200 text-gray-700 py-4 mt-8 text-center">
+        <p>&copy; 2024 QR_bite. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

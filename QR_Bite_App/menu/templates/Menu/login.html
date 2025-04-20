@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6 text-red-600">Login</h1>
+        
+        <form method="POST" class="space-y-4">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition">Login</button>
+        </form>
+    </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f40b8b;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color:#f40b8b;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #f40b8b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .errorlist {
+            color: red;
+            font-size: 14px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="errorlist">{{ field.errors|striptags }}</div>
+                {% endif %}
+            {% endfor %}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
+

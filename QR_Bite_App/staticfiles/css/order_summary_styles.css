@@ -1,0 +1,87 @@
+/* Ensure the container for both columns uses flexbox */
+.order-summary-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  @media (min-width: 1024px) {
+    .order-summary-container {
+      flex-direction: row;
+      min-height: 600px; /* Ensures height for both columns */
+    }
+  
+    .order-items-section {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 20px;
+    }
+  
+    .order-summary-and-actions {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Aligns elements to the top */
+      align-items: center;
+      position: sticky;
+      top: 0; /* Keeps the right column fixed while scrolling */
+    }
+  }
+  
+  .order-summary-and-actions-box {
+    padding: 60px 30px;
+    background-color: #f9fafb;
+    border-radius: 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;  /* was 10%, change to 100% */
+    text-align: center;
+    min-height: 500px;  /* optional: increase from 50px */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* top align */
+    gap: 20px; /* optional: spacing between elements */
+  }
+  
+  .order-total-section h2,
+  .estimated-time-section p,
+  .checkout-button {
+    margin-bottom: 20px; /* Ensures spacing between elements */
+  }
+  
+  .checkout-button {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: #dc2626;
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .checkout-button:hover {
+    background-color: #b91c1c;
+  }
+  
+  .add-more-button {
+    margin-bottom: 0;
+  }
+  
+
+  .cart{
+    font-size: xxx-large;
+  }
+  #explore-menu-left
+  {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #265ddc;
+  color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .otp-container {
+            background: rgba(255, 255, 255, 0.8); /* semi-transparent white */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f40b8b;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #f40b8b;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #f40b8b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <h1>OTP Verification</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="otp">Enter OTP</label>
+            <input type="text" id="otp" name="otp" maxlength="6" required>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</body>
+</html>
